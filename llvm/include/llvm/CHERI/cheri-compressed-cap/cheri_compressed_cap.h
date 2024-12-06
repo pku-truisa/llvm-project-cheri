@@ -1,6 +1,9 @@
 /*-
  * SPDX-License-Identifier: BSD-2-Clause
  *
+ * Copyright (c) 2024 Dong Tong, Peking University
+ * All rights reserved.
+ * 
  * Copyright (c) 2018 Lawrence Esswood
  * Copyright (c) 2018-2020 Alex Richardson
  * All rights reserved.
@@ -47,6 +50,7 @@
 #include <string.h>
 
 // clang-format off
+#include "truisa_tagged_pointer_32.h"
 #include "cheri_compressed_cap_64.h"
 #include "cheri_compressed_cap_128.h"
 #include "cheri_compressed_cap_128m.h"
