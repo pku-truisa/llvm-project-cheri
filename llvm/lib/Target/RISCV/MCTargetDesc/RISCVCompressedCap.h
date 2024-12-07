@@ -16,13 +16,13 @@
 namespace llvm {
 
 namespace RISCVCompressedCap {
-uint64_t getRepresentableLength(uint64_t Length, bool IsRV64);
+uint64_t getRepresentableLength(uint64_t Length, bool IsRV64, bool IsMinFat = false);
 
-uint64_t getAlignmentMask(uint64_t Length, bool IsRV64);
+uint64_t getAlignmentMask(uint64_t Length, bool IsRV64, bool IsMinFat = false);
 
-TailPaddingAmount getRequiredTailPadding(uint64_t Size, bool IsRV64);
+TailPaddingAmount getRequiredTailPadding(uint64_t Size, bool IsRV64, bool IsMinFat = false);
 
-Align getRequiredAlignment(uint64_t Size, bool IsRV64);
+Align getRequiredAlignment(uint64_t Size, bool IsRV64, bool IsMinFat = false);
 } // namespace RISCVCompressedCap
 } // namespace llvm
 #endif
