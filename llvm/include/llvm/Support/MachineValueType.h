@@ -280,6 +280,7 @@ namespace llvm {
       x86amx         = 183,    // This is an X86 AMX value
       i64x8          = 184,    // 8 Consecutive GPRs (AArch64)
 
+      // In truisa c64 is 32bits, c128 is 64bits, c256 is 128bits
       c64            = i64x8 + 1,  // This is a 64 bit capability value
       c128           = c64 + 1,    // This is a 128 bit capability value
       c256           = c128 + 1,   // This is a 256 bit capability value
@@ -949,6 +950,7 @@ namespace llvm {
       case nxv1f16: return TypeSize::Scalable(16);
       case f32 :
       case i32 :
+      case c64 :
       case v32i1:
       case v4i8:
       case v2i16:
@@ -969,7 +971,8 @@ namespace llvm {
       case x86mmx:
       case f64 :
       case i64 :
-      case c64:
+      // case c64:
+      case c128:
       case v64i1:
       case v8i8:
       case v4i16:
@@ -994,7 +997,8 @@ namespace llvm {
       case f128:
       case ppcf128:
       case i128:
-      case c128:
+      // case c128:
+      case c256:
       case v128i1:
       case v16i8:
       case v8i16:
@@ -1021,7 +1025,7 @@ namespace llvm {
       case v3f64: return TypeSize::Fixed(192);
       case v7i32:
       case v7f32: return TypeSize::Fixed(224);
-      case c256:
+      // case c256:
       case v256i1:
       case v128i2:
       case v64i4:
@@ -1242,11 +1246,11 @@ namespace llvm {
       switch (BitWidth) {
       default:
         return (MVT::SimpleValueType)(MVT::INVALID_SIMPLE_VALUE_TYPE);
-      case 64:
+      case 32:
         return MVT::c64;
-      case 128:
+      case 64:
         return MVT::c128;
-      case 256:
+      case 128:
         return MVT::c256;
       }
     }

@@ -13,31 +13,34 @@
 namespace llvm {
 
 namespace RISCVCompressedCap {
-uint64_t getRepresentableLength(uint64_t Length, bool IsRV64, bool IsMinFat = false) {
-  if (IsMinFat)
-    return Align(Length).value();
-  else if (IsRV64) {
+uint64_t getRepresentableLength(uint64_t Length, bool IsRV64) {
+  // In Trusia, all stack alloca size is 2^E
+  return Align(Length).value();
+  
+  if (IsRV64) {
     return cc128_get_representable_length(Length);
   } else {
     return cc64_get_representable_length(Length);
   }
 }
 
-uint64_t getAlignmentMask(uint64_t Length, bool IsRV64, bool IsMinFat = false) {
-  if (IsMinFat)
-    return UINT64_MAX << Align(Length).value();
-  else if (IsRV64) {
+uint64_t getAlignmentMask(uint64_t Length, bool IsRV64) {
+  // In Trusia, all stack alloca size is 2^E
+  return UINT64_MAX << Align(Length).value();
+  
+  if (IsRV64) {
     return cc128_get_alignment_mask(Length);
   } else {
     return cc64_get_alignment_mask(Length);
   }
 }
 
-TailPaddingAmount getRequiredTailPadding(uint64_t Size, bool IsRV64, bool IsMinFat = false) {
-  if (IsMinFat)
-    return static_cast<TailPaddingAmount>(
-        llvm::alignTo(Size, Align(Size)) - Size);
-  else if (IsRV64) {
+TailPaddingAmount getRequiredTailPadding(uint64_t Size, bool IsRV64) {
+  // In Trusia, all stack alloca size is 2^E
+  return static_cast<TailPaddingAmount>(
+    llvm::alignTo(Size, Align(Size)) - Size);
+  
+  if (IsRV64) {
     return static_cast<TailPaddingAmount>(
         llvm::alignTo(Size, cc128_get_required_alignment(Size)) - Size);
   } else {
@@ -46,10 +49,11 @@ TailPaddingAmount getRequiredTailPadding(uint64_t Size, bool IsRV64, bool IsMinF
   }
 }
 
-Align getRequiredAlignment(uint64_t Size, bool IsRV64, bool IsMinFat = false) {
-  if (IsMinFat)
-    return Align(Size);
-  else if (IsRV64) {
+Align getRequiredAlignment(uint64_t Size, bool IsRV64) {
+  // In Trusia, all stack alloca size is 2^E
+  return Align(Size);
+  
+  if (IsRV64) {
     return Align(cc128_get_required_alignment(Size));
   } else {
     return Align(cc64_get_required_alignment(Size));

@@ -50,10 +50,17 @@ static bool getArchFeatures(const Driver &D, StringRef Arch,
 
 static bool isCheriPurecapABIName(StringRef ABI) {
   return llvm::StringSwitch<bool>(ABI)
+      .Case("il32pc32", true)
+      .Case("il32pc32f", true)
+      .Case("il32pc32d", true)
+      .Case("il32pc32e", true)
       .Case("il32pc64", true)
       .Case("il32pc64f", true)
       .Case("il32pc64d", true)
       .Case("il32pc64e", true)
+      .Case("l64pc64", true)
+      .Case("l64pc64f", true)
+      .Case("l64pc64d", true)
       .Case("l64pc128", true)
       .Case("l64pc128f", true)
       .Case("l64pc128d", true)

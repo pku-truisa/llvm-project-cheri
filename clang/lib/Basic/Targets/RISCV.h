@@ -29,16 +29,19 @@ class RISCVTargetInfo : public TargetInfo {
 
     if (ABI == "ilp32" || ABI == "ilp32f" || ABI == "ilp32d" ||
         ABI == "ilp32e" ||
+        ABI == "il32pc32" || ABI == "il32pc32f" || ABI == "il32pc32d" ||
+        ABI == "il32pc32e" ||
         ABI == "il32pc64" || ABI == "il32pc64f" || ABI == "il32pc64d" ||
         ABI == "il32pc64e") {
       if (HasCheri)
-        Layout = "e-m:e-pf200:64:64:64:32-p:32:32-i64:64-n32-S128";
+          Layout = "e-m:e-pf200:32:32:32:32-p:32:32-i64:64-n32-S128";
       else
         Layout = "e-m:e-p:32:32-i64:64-n32-S128";
     } else if (ABI == "lp64" || ABI == "lp64f" || ABI == "lp64d" ||
+               ABI == "l64pc64" || ABI == "l64pc64f" || ABI == "l64pc64d" ||
                ABI == "l64pc128" || ABI == "l64pc128f" || ABI == "l64pc128d") {
       if (HasCheri)
-        Layout = "e-m:e-pf200:128:128:128:64-p:64:64-i64:64-i128:128-n64-S128";
+          Layout = "e-m:e-pf200:64:64:64:64-p:64:64-i64:64-i128:128-n64-S128";
       else
         Layout = "e-m:e-p:64:64-i64:64-i128:128-n64-S128";
     } else
@@ -173,7 +176,8 @@ public:
       ABI = Name;
       return true;
     }
-    if (Name == "il32pc64" || Name == "il32pc64f" || Name == "il32pc64d") {
+    if (Name == "il32pc64" || Name == "il32pc64f" || Name == "il32pc64d" ||
+        Name == "il32pc32" || Name == "il32pc32f" || Name == "il32pc32d") {
       setCapabilityABITypes();
       CapabilityABI = true;
       ABI = Name;
@@ -209,7 +213,8 @@ public:
       ABI = Name;
       return true;
     }
-    if (Name == "l64pc128" || Name == "l64pc128f" || Name == "l64pc128d") {
+    if (Name == "l64pc128" || Name == "l64pc128f" || Name == "l64pc128d" ||
+        Name == "l64pc64" || Name == "l64pc64f" || Name == "l64pc64d") {
       setCapabilityABITypes();
       CapabilityABI = true;
       ABI = Name;
