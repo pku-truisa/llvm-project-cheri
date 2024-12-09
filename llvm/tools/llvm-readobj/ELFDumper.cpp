@@ -3328,7 +3328,8 @@ template <class ELFT> void ELFDumper<ELFT>::printCheriCapTable() {
     }
     break;
   case EM_RISCV:
-    CapSize = e.getFileClass() == ELF::ELFCLASS64 ? 16 : 8;
+    //CapSize = e.getFileClass() == ELF::ELFCLASS64 ? 16 : 8;
+    CapSize = e.getFileClass() == ELF::ELFCLASS64 ? 8 : 4;
     break;
   default:
     W.startLine() << "Unknown machine type\n";

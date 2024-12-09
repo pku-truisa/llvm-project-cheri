@@ -340,7 +340,8 @@ bool RISCVTargetInfo::handleTargetFeatures(std::vector<std::string> &Features,
   }
   if (ISAInfo->hasExtension("xcheri")) {
     HasCheri = true;
-    CapSize = XLen * 2;
+    //CapSize = XLen * 2;
+    CapSize = XLen;
     HasCheriISAv9Semantics =
         llvm::is_contained(Features, "+xcheri-v9-semantics");
   }

@@ -260,7 +260,8 @@ void MCStreamer::emitCheriIntcapGeneric(const MCExpr *Expr, unsigned CapSize,
     emitZeros(CapSize);
   } else {
     const unsigned AddressSize = Context.getAsmInfo()->getCodePointerSize();
-    assert(CapSize == 2 * AddressSize && "Unknown CHERI capability format?");
+    //assert(CapSize == 2 * AddressSize && "Unknown CHERI capability format?");
+    assert(CapSize == 1 * AddressSize && "Unknown CHERI capability format?");
     // Could use cheri-compressed-cap here for constants, but we know that the
     // address is always the first/second 64-bit value depending on endianess.
     if (Context.getAsmInfo()->isLittleEndian()) {
