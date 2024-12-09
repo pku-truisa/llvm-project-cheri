@@ -73,9 +73,11 @@ static std::string computeDataLayout(const Triple &TT, StringRef FS,
   StringRef PurecapOptions = "";
   if (llvm::is_contained(llvm::split(FS, ','), "+xcheri")) {
     if (TT.isArch64Bit())
-      CapTypes = "-pf200:128:128:128:64";
+      // CapTypes = "-pf200:128:128:128:64";
+      CapTypes = "-pf200:64:64:64:64";
     else
-      CapTypes = "-pf200:64:64:64:32";
+      // CapTypes = "-pf200:64:64:64:32";
+      CapTypes = "-pf200:32:32:32:32";
 
     RISCVABI::ABI ABI = RISCVABI::getTargetABI(Options.MCOptions.getABIName());
     if (ABI != RISCVABI::ABI_Unknown && RISCVABI::isCheriPureCapABI(ABI))

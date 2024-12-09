@@ -170,6 +170,8 @@ void RISCVTargetELFStreamer::finish() {
     break;
   case RISCVABI::ABI_IL32PC64:
   case RISCVABI::ABI_L64PC128:
+  case RISCVABI::ABI_IL32PC32:
+  case RISCVABI::ABI_L64PC164:
     EFlags |= ELF::EF_RISCV_CHERIABI;
     break;
   case RISCVABI::ABI_ILP32F:
@@ -178,6 +180,8 @@ void RISCVTargetELFStreamer::finish() {
     break;
   case RISCVABI::ABI_IL32PC64F:
   case RISCVABI::ABI_L64PC128F:
+  case RISCVABI::ABI_IL32PC32F:
+  case RISCVABI::ABI_L64PC64F:
     EFlags |= ELF::EF_RISCV_FLOAT_ABI_SINGLE;
     EFlags |= ELF::EF_RISCV_CHERIABI;
     break;
@@ -187,6 +191,8 @@ void RISCVTargetELFStreamer::finish() {
     break;
   case RISCVABI::ABI_IL32PC64D:
   case RISCVABI::ABI_L64PC128D:
+  case RISCVABI::ABI_IL32PC32D:
+  case RISCVABI::ABI_L64PC64D:
     EFlags |= ELF::EF_RISCV_FLOAT_ABI_DOUBLE;
     EFlags |= ELF::EF_RISCV_CHERIABI;
     break;
@@ -194,6 +200,7 @@ void RISCVTargetELFStreamer::finish() {
     EFlags |= ELF::EF_RISCV_RVE;
     break;
   case RISCVABI::ABI_IL32PC64E:
+  case RISCVABI::ABI_IL32PC32E:
     EFlags |= ELF::EF_RISCV_RVE;
     EFlags |= ELF::EF_RISCV_CHERIABI;
     break;
@@ -318,7 +325,8 @@ protected:
 
 void RISCVELFStreamer::emitCheriIntcap(const MCExpr *Expr, unsigned CapSize,
                                        SMLoc Loc) {
-  assert(CapSize == (getContext().getTargetTriple().isArch64Bit() ? 16 : 8));
+  // assert(CapSize == (getContext().getTargetTriple().isArch64Bit() ? 16 : 8));
+  assert(CapSize == (getContext().getTargetTriple().isArch64Bit() ? 8 : 4));
   emitCheriIntcapGeneric(Expr, CapSize, Loc);
 }
 

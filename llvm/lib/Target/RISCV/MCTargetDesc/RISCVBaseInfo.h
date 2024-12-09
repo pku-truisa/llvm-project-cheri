@@ -371,12 +371,19 @@ enum ABI {
   ABI_IL32PC64F,
   ABI_IL32PC64D,
   ABI_IL32PC64E,
+  ABI_IL32PC32,
+  ABI_IL32PC32F,
+  ABI_IL32PC32D,
+  ABI_IL32PC32E,
   ABI_LP64,
   ABI_LP64F,
   ABI_LP64D,
   ABI_L64PC128,
   ABI_L64PC128F,
   ABI_L64PC128D,
+  ABI_L64PC64,
+  ABI_L64PC64F,
+  ABI_L64PC64D,
   ABI_Unknown
 };
 
@@ -404,9 +411,16 @@ inline static bool isCheriPureCapABI(ABI TargetABI) {
   case ABI_IL32PC64F:
   case ABI_IL32PC64D:
   case ABI_IL32PC64E:
+  case ABI_IL32PC32:
+  case ABI_IL32PC32F:
+  case ABI_IL32PC32D:
+  case ABI_IL32PC32E:
   case ABI_L64PC128:
   case ABI_L64PC128F:
   case ABI_L64PC128D:
+  case ABI_L64PC64:
+  case ABI_L64PC64F:
+  case ABI_L64PC64D:
     return true;
   default:
     llvm_unreachable("Improperly initialised target ABI");

@@ -280,12 +280,16 @@ namespace llvm {
       x86amx         = 183,    // This is an X86 AMX value
       i64x8          = 184,    // 8 Consecutive GPRs (AArch64)
 
-      // In truisa c64 is 32bits, c128 is 64bits, c256 is 128bits
-      c64            = i64x8 + 1,  // This is a 64 bit capability value
+      t32            = i64x8 + 1,  // This is a 32 bit tagged pointer value
+      t64            = t32 + 1,    // This is a 64 bit tagged pointer value
+      t128           = t64 + 1,    // This is a 128 bit tagged pointer value
+      // c64            = i64x8 + 1,  // This is a 64 bit capability value
+      c64            = t128 + 1,   // This is a 64 bit capability value
       c128           = c64 + 1,    // This is a 128 bit capability value
       c256           = c128 + 1,   // This is a 256 bit capability value
 
-      FIRST_CAPABILITY_VALUETYPE = c64,
+      // FIRST_CAPABILITY_VALUETYPE = c64,
+      FIRST_CAPABILITY_VALUETYPE = t32,
       LAST_CAPABILITY_VALUETYPE = c256,
 
       FIRST_VALUETYPE =  1,    // This is always the beginning of the list.
@@ -950,7 +954,7 @@ namespace llvm {
       case nxv1f16: return TypeSize::Scalable(16);
       case f32 :
       case i32 :
-      case c64 :
+      case t32 :
       case v32i1:
       case v4i8:
       case v2i16:
@@ -971,8 +975,8 @@ namespace llvm {
       case x86mmx:
       case f64 :
       case i64 :
-      // case c64:
-      case c128:
+      case t64 :
+      case c64:
       case v64i1:
       case v8i8:
       case v4i16:
@@ -997,7 +1001,8 @@ namespace llvm {
       case f128:
       case ppcf128:
       case i128:
-      // case c128:
+      case t128:
+      case c128:
       case c256:
       case v128i1:
       case v16i8:
@@ -1247,11 +1252,14 @@ namespace llvm {
       default:
         return (MVT::SimpleValueType)(MVT::INVALID_SIMPLE_VALUE_TYPE);
       case 32:
-        return MVT::c64;
+        return MVT::t32;
+        // return MVT::c64;
       case 64:
-        return MVT::c128;
+        return MVT::t64;
+        // return MVT::c128;
       case 128:
-        return MVT::c256;
+        return MVT::t128;
+        // return MVT::c256;
       }
     }
 

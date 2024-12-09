@@ -93,12 +93,19 @@ ABI getTargetABI(StringRef ABIName) {
                        .Case("il32pc64f", ABI_IL32PC64F)
                        .Case("il32pc64d", ABI_IL32PC64D)
                        .Case("il32pc64e", ABI_IL32PC64E)
+                       .Case("il32pc32", ABI_IL32PC32)
+                       .Case("il32pc32f", ABI_IL32PC32F)
+                       .Case("il32pc32d", ABI_IL32PC32D)
+                       .Case("il32pc32e", ABI_IL32PC32E)
                        .Case("lp64", ABI_LP64)
                        .Case("lp64f", ABI_LP64F)
                        .Case("lp64d", ABI_LP64D)
                        .Case("l64pc128", ABI_L64PC128)
                        .Case("l64pc128f", ABI_L64PC128F)
                        .Case("l64pc128d", ABI_L64PC128D)
+                       .Case("l64pc64", ABI_L64PC64)
+                       .Case("l64pc64f", ABI_L64PC64F)
+                       .Case("l64pc64d", ABI_L64PC64D)
                        .Default(ABI_Unknown);
   return TargetABI;
 }
