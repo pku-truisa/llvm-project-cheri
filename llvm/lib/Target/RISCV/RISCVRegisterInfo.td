@@ -182,10 +182,12 @@ def XLenRI : RegInfoByHwMode<
       [RV32,              RV64],
       [RegInfo<32,32,32>, RegInfo<64,64,64>]>;
 def CLenVT : ValueTypeByHwMode<[RV32, RV64],
-                               [c64, c128]>;
+                               //[c64, c128]>;
+                               [t32, t64]>;
 def CLenRI : RegInfoByHwMode<
       [RV32,              RV64],
-      [RegInfo<64,64,64>, RegInfo<128,128,128>]>;
+      //[RegInfo<64,64,64>, RegInfo<128,128,128>]>;
+      [RegInfo<32,32,32>, RegInfo<32,32,32>]>;
 
 // The order of registers represents the preferred allocation sequence.
 // Registers are listed in the order caller-save, callee-save, specials.
@@ -200,7 +202,8 @@ def GPR : RegisterClass<"RISCV", [XLenVT], 32, (add
   let RegInfos = XLenRI;
 }
 
-def GPCR : RegisterClass<"RISCV", [CLenVT], 64, (add
+//def GPCR : RegisterClass<"RISCV", [CLenVT], 64, (add
+def GPCR : RegisterClass<"RISCV", [CLenVT], 32, (add
     (sequence "C%u", 10, 17),
     (sequence "C%u", 5, 7),
     (sequence "C%u", 28, 31),
@@ -211,7 +214,8 @@ def GPCR : RegisterClass<"RISCV", [CLenVT], 64, (add
   let RegInfos = CLenRI;
 }
 
-def GPCRC0IsDDC : RegisterClass<"RISCV", [CLenVT], 64, (add
+//def GPCRC0IsDDC : RegisterClass<"RISCV", [CLenVT], 64, (add
+def GPCRC0IsDDC : RegisterClass<"RISCV", [CLenVT], 32, (add
     (sequence "C%u", 10, 17),
     (sequence "C%u", 5, 7),
     (sequence "C%u", 28, 31),
@@ -231,7 +235,8 @@ def GPRNoX0 : RegisterClass<"RISCV", [XLenVT], 32, (sub GPR, X0)> {
   let RegInfos = XLenRI;
 }
 
-def GPCRNoC0 : RegisterClass<"RISCV", [CLenVT], 64, (sub GPCR, C0)> {
+//def GPCRNoC0 : RegisterClass<"RISCV", [CLenVT], 64, (sub GPCR, C0)> {
+def GPCRNoC0 : RegisterClass<"RISCV", [CLenVT], 32, (sub GPCR, C0)> {
   let RegInfos = CLenRI;
 }
 
@@ -254,7 +259,8 @@ def GPRC : RegisterClass<"RISCV", [XLenVT], 32, (add
   let RegInfos = XLenRI;
 }
 
-def GPCRC : RegisterClass<"RISCV", [CLenVT], 64, (add
+//def GPCRC : RegisterClass<"RISCV", [CLenVT], 64, (add
+def GPCRC : RegisterClass<"RISCV", [CLenVT], 32, (add
     (sequence "C%u", 10, 15),
     (sequence "C%u", 8, 9)
   )> {
@@ -273,7 +279,8 @@ def GPRTC : RegisterClass<"RISCV", [XLenVT], 32, (add
   let RegInfos = XLenRI;
 }
 
-def GPCRTC : RegisterClass<"RISCV", [CLenVT], 64, (add
+//def GPCRTC : RegisterClass<"RISCV", [CLenVT], 64, (add
+def GPCRTC : RegisterClass<"RISCV", [CLenVT], 32, (add
     (sequence "C%u", 5, 7),
     (sequence "C%u", 10, 17),
     (sequence "C%u", 28, 31)
@@ -285,7 +292,8 @@ def SP : RegisterClass<"RISCV", [XLenVT], 32, (add X2)> {
   let RegInfos = XLenRI;
 }
 
-def CSP : RegisterClass<"RISCV", [CLenVT], 64, (add C2)> {
+//def CSP : RegisterClass<"RISCV", [CLenVT], 64, (add C2)> {
+def CSP : RegisterClass<"RISCV", [CLenVT], 32, (add C2)> {
   let RegInfos = CLenRI;
 }
 

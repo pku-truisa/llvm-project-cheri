@@ -233,7 +233,8 @@ public:
   }
   MVT typeForCapabilities() const {
     assert(HasCheri && "Cannot get capability type for non-CHERI");
-    return is64Bit() ? MVT::c128 : MVT::c64;
+    //return is64Bit() ? MVT::c128 : MVT::c64;
+    return is64Bit() ? MVT::t64 : MVT::t32;
   }
 
   bool hasMacroFusion() const { return hasLUIADDIFusion(); }
