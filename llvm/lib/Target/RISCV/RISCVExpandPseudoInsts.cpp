@@ -325,7 +325,7 @@ bool RISCVExpandPseudo::expandCapLoadGlobalCap(
   MachineFunction *MF = MBB.getParent();
 
   const auto &STI = MF->getSubtarget<RISCVSubtarget>();
-  unsigned SecondOpcode = STI.is64Bit() ? RISCV::CLC_128 : RISCV::CLC_64;
+  unsigned SecondOpcode = STI.is64Bit() ? RISCV::CLC_64 : RISCV::CLC_32;
   return expandAuipccInstPair(MBB, MBBI, NextMBBI, RISCVII::MO_CAPTAB_PCREL_HI,
                               SecondOpcode);
 }

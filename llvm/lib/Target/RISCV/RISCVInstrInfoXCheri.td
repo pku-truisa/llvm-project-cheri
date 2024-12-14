@@ -493,10 +493,10 @@ def LD_DDC  : CheriLoad_r<0b00011, "ld.ddc",  GPR, GPRMemZeroOffset>;
 
 let DecoderNamespace = "RISCV32Only_",
     Predicates = [HasCheri, IsRV32] in
-def LC_DDC_64  : CheriLoad_r<0b00011, "lc.ddc", GPCR, GPRMemZeroOffset>;
+def LC_DDC_32  : CheriLoad_r<0b00011, "lc.ddc", GPCR, GPRMemZeroOffset>;
 
 let Predicates = [HasCheri, IsRV64] in
-def LC_DDC_128 : CheriLoad_r<0b10111, "lc.ddc", GPCR, GPRMemZeroOffset>;
+def LC_DDC_64 : CheriLoad_r<0b10111, "lc.ddc", GPCR, GPRMemZeroOffset>;
 
 let Predicates = [HasCheri] in {
 def SB_DDC  : CheriStore_r<0b00000, "sb.ddc", GPR, GPRMemZeroOffset>;
@@ -510,10 +510,10 @@ def SD_DDC  : CheriStore_r<0b00011, "sd.ddc", GPR, GPRMemZeroOffset>;
 
 let DecoderNamespace = "RISCV32Only_",
     Predicates = [HasCheri, IsRV32] in
-def SC_DDC_64  : CheriStore_r<0b00011, "sc.ddc", GPCR, GPRMemZeroOffset>;
+def SC_DDC_32  : CheriStore_r<0b00011, "sc.ddc", GPCR, GPRMemZeroOffset>;
 
 let Predicates = [HasCheri, IsRV64] in
-def SC_DDC_128 : CheriStore_r<0b00100, "sc.ddc", GPCR, GPRMemZeroOffset>;
+def SC_DDC_64 : CheriStore_r<0b00100, "sc.ddc", GPCR, GPRMemZeroOffset>;
 
 let Predicates = [HasCheri] in {
 def LB_CAP  : CheriLoad_r<0b01000, "lb.cap",  GPR, GPCRMemZeroOffset>;
@@ -530,10 +530,10 @@ def LD_CAP  : CheriLoad_r<0b01011, "ld.cap",  GPR, GPCRMemZeroOffset>;
 
 let DecoderNamespace = "RISCV32Only_",
     Predicates = [HasCheri, IsRV32] in
-def LC_CAP_64  : CheriLoad_r<0b01011, "lc.cap", GPCR, GPCRMemZeroOffset>;
+def LC_CAP_32  : CheriLoad_r<0b01011, "lc.cap", GPCR, GPCRMemZeroOffset>;
 
 let Predicates = [HasCheri, IsRV64] in
-def LC_CAP_128 : CheriLoad_r<0b11111, "lc.cap", GPCR, GPCRMemZeroOffset>;
+def LC_CAP_64 : CheriLoad_r<0b11111, "lc.cap", GPCR, GPCRMemZeroOffset>;
 
 let Predicates = [HasCheri] in {
 def SB_CAP  : CheriStore_r<0b01000, "sb.cap", GPR, GPCRMemZeroOffset>;
@@ -547,10 +547,10 @@ def SD_CAP  : CheriStore_r<0b01011, "sd.cap", GPR, GPCRMemZeroOffset>;
 
 let DecoderNamespace = "RISCV32Only_",
     Predicates = [HasCheri, IsRV32] in
-def SC_CAP_64  : CheriStore_r<0b01011, "sc.cap", GPCR, GPCRMemZeroOffset>;
+def SC_CAP_32  : CheriStore_r<0b01011, "sc.cap", GPCR, GPCRMemZeroOffset>;
 
 let Predicates = [HasCheri, IsRV64] in
-def SC_CAP_128 : CheriStore_r<0b01100, "sc.cap", GPCR, GPCRMemZeroOffset>;
+def SC_CAP_64 : CheriStore_r<0b01100, "sc.cap", GPCR, GPCRMemZeroOffset>;
 
 let Predicates = [HasCheri, HasStdExtA] in {
 def LR_B_DDC  : CheriLoad_r<0b10000, "lr.b.ddc",  GPR, GPRMemZeroOffset>;
@@ -563,10 +563,10 @@ def LR_D_DDC  : CheriLoad_r<0b10011, "lr.d.ddc",  GPR, GPRMemZeroOffset>;
 
 let DecoderNamespace = "RISCV32Only_",
     Predicates = [HasCheri, HasStdExtA, IsRV32] in
-def LR_C_DDC_64  : CheriLoad_r<0b10011, "lr.c.ddc", GPCR, GPRMemZeroOffset>;
+def LR_C_DDC_32  : CheriLoad_r<0b10011, "lr.c.ddc", GPCR, GPRMemZeroOffset>;
 
 let Predicates = [HasCheri, HasStdExtA, IsRV64] in
-def LR_C_DDC_128 : CheriLoad_r<0b10100, "lr.c.ddc", GPCR, GPRMemZeroOffset>;
+def LR_C_DDC_64 : CheriLoad_r<0b10100, "lr.c.ddc", GPCR, GPRMemZeroOffset>;
 
 let Predicates = [HasCheri, HasStdExtA] in {
 def LR_B_CAP  : CheriLoad_r<0b11000, "lr.b.cap",  GPR, GPCRMemZeroOffset>;
@@ -579,10 +579,10 @@ def LR_D_CAP  : CheriLoad_r<0b11011, "lr.d.cap",  GPR, GPCRMemZeroOffset>;
 
 let DecoderNamespace = "RISCV32Only_",
     Predicates = [HasCheri, HasStdExtA, IsRV32] in
-def LR_C_CAP_64  : CheriLoad_r<0b11011, "lr.c.cap", GPCR, GPCRMemZeroOffset>;
+def LR_C_CAP_32  : CheriLoad_r<0b11011, "lr.c.cap", GPCR, GPCRMemZeroOffset>;
 
 let Predicates = [HasCheri, HasStdExtA, IsRV64] in
-def LR_C_CAP_128 : CheriLoad_r<0b11100, "lr.c.cap", GPCR, GPCRMemZeroOffset>;
+def LR_C_CAP_64 : CheriLoad_r<0b11100, "lr.c.cap", GPCR, GPCRMemZeroOffset>;
 
 let Predicates = [HasCheri, HasStdExtA] in {
 def SC_B_DDC  : CheriStoreCond_r<0b10000, "sc.b.ddc",  GPR, GPRMemZeroOffset>;
@@ -595,10 +595,10 @@ def SC_D_DDC  : CheriStoreCond_r<0b10011, "sc.d.ddc",  GPR, GPRMemZeroOffset>;
 
 let DecoderNamespace = "RISCV32Only_",
     Predicates = [HasCheri, HasStdExtA, IsRV32] in
-def SC_C_DDC_64  : CheriStoreCond_r<0b10011, "sc.c.ddc", GPCR, GPRMemZeroOffset>;
+def SC_C_DDC_32  : CheriStoreCond_r<0b10011, "sc.c.ddc", GPCR, GPRMemZeroOffset>;
 
 let Predicates = [HasCheri, HasStdExtA, IsRV64] in
-def SC_C_DDC_128 : CheriStoreCond_r<0b10100, "sc.c.ddc", GPCR, GPRMemZeroOffset>;
+def SC_C_DDC_64 : CheriStoreCond_r<0b10100, "sc.c.ddc", GPCR, GPRMemZeroOffset>;
 
 let Predicates = [HasCheri, HasStdExtA] in {
 def SC_B_CAP  : CheriStoreCond_r<0b11000, "sc.b.cap",  GPR, GPCRMemZeroOffset>;
@@ -611,10 +611,10 @@ def SC_D_CAP  : CheriStoreCond_r<0b11011, "sc.d.cap",  GPR, GPCRMemZeroOffset>;
 
 let DecoderNamespace = "RISCV32Only_",
     Predicates = [HasCheri, HasStdExtA, IsRV32] in
-def SC_C_CAP_64  : CheriStoreCond_r<0b11011, "sc.c.cap", GPCR, GPCRMemZeroOffset>;
+def SC_C_CAP_32  : CheriStoreCond_r<0b11011, "sc.c.cap", GPCR, GPCRMemZeroOffset>;
 
 let Predicates = [HasCheri, HasStdExtA, IsRV64] in
-def SC_C_CAP_128 : CheriStoreCond_r<0b11100, "sc.c.cap", GPCR, GPCRMemZeroOffset>;
+def SC_C_CAP_64 : CheriStoreCond_r<0b11100, "sc.c.cap", GPCR, GPCRMemZeroOffset>;
 
 //===----------------------------------------------------------------------===//
 // Memory-Access Instructions
@@ -623,40 +623,40 @@ def SC_C_CAP_128 : CheriStoreCond_r<0b11100, "sc.c.cap", GPCR, GPCRMemZeroOffset
 let Predicates = [HasCheri, IsRV32, NotCapMode] in {
 let DecoderNamespace = "RISCV32Only_",
     hasSideEffects = 0, mayLoad = 1, mayStore = 0 in
-def LC_64  : RVInstI<0x3, OPC_LOAD, (outs GPCR:$rd),
+def LC_32  : RVInstI<0x3, OPC_LOAD, (outs GPCR:$rd),
                      (ins GPR:$rs1, simm12:$imm12),
                      "lc", "$rd, ${imm12}(${rs1})">;
 
 let DecoderNamespace = "RISCV32Only_",
     hasSideEffects = 0, mayLoad = 0, mayStore = 1 in
-def SC_64  : RVInstS<0x3, OPC_STORE, (outs),
+def SC_32  : RVInstS<0x3, OPC_STORE, (outs),
                      (ins GPCR:$rs2, GPR:$rs1, simm12:$imm12),
                      "sc", "$rs2, ${imm12}(${rs1})">;
+
+let EmitPriority = 0 in {
+def : InstAlias<"lc $rd, (${rs1})",
+                (LC_32  GPCR:$rd, GPR:$rs1, 0)>;
+def : InstAlias<"sc $rs2, (${rs1})",
+                (SC_32  GPCR:$rs2, GPR:$rs1, 0)>;
+}
+}
+
+let Predicates = [HasCheri, IsRV64, NotCapMode] in {
+let hasSideEffects = 0, mayLoad = 1, mayStore = 0 in
+def LC_64  : RVInstI<0x2, OPC_MISC_MEM, (outs GPCR:$rd),
+                      (ins GPR:$rs1, simm12:$imm12),
+                      "lc", "$rd, ${imm12}(${rs1})">;
+
+let hasSideEffects = 0, mayLoad = 0, mayStore = 1 in
+def SC_64  : RVInstS<0x4, OPC_STORE, (outs),
+                      (ins GPCR:$rs2, GPR:$rs1, simm12:$imm12),
+                      "sc", "$rs2, ${imm12}(${rs1})">;
 
 let EmitPriority = 0 in {
 def : InstAlias<"lc $rd, (${rs1})",
                 (LC_64  GPCR:$rd, GPR:$rs1, 0)>;
 def : InstAlias<"sc $rs2, (${rs1})",
                 (SC_64  GPCR:$rs2, GPR:$rs1, 0)>;
-}
-}
-
-let Predicates = [HasCheri, IsRV64, NotCapMode] in {
-let hasSideEffects = 0, mayLoad = 1, mayStore = 0 in
-def LC_128  : RVInstI<0x2, OPC_MISC_MEM, (outs GPCR:$rd),
-                      (ins GPR:$rs1, simm12:$imm12),
-                      "lc", "$rd, ${imm12}(${rs1})">;
-
-let hasSideEffects = 0, mayLoad = 0, mayStore = 1 in
-def SC_128  : RVInstS<0x4, OPC_STORE, (outs),
-                      (ins GPCR:$rs2, GPR:$rs1, simm12:$imm12),
-                      "sc", "$rs2, ${imm12}(${rs1})">;
-
-let EmitPriority = 0 in {
-def : InstAlias<"lc $rd, (${rs1})",
-                (LC_128  GPCR:$rd, GPR:$rs1, 0)>;
-def : InstAlias<"sc $rs2, (${rs1})",
-                (SC_128  GPCR:$rs2, GPR:$rs1, 0)>;
 }
 }
 
@@ -744,42 +744,42 @@ def CSD    : CheriStore_ri<0b011, "csd">;
 let Predicates = [HasCheri, IsRV32, IsCapMode] in {
 let DecoderNamespace = "RISCV32CapModeOnly_",
     hasSideEffects = 0, mayLoad = 1, mayStore = 0 in
-def CLC_64  : RVInstI<0x3, OPC_LOAD, (outs GPCR:$rd),
+def CLC_32  : RVInstI<0x3, OPC_LOAD, (outs GPCR:$rd),
                       (ins GPCR:$rs1, simm12:$imm12),
                       "clc", "$rd, ${imm12}(${rs1})">;
 
 let DecoderNamespace = "RISCV32CapModeOnly_",
     hasSideEffects = 0, mayLoad = 0, mayStore = 1 in
-def CSC_64  : RVInstS<0x3, OPC_STORE, (outs),
+def CSC_32  : RVInstS<0x3, OPC_STORE, (outs),
                       (ins GPCR:$rs2, GPCR:$rs1, simm12:$imm12),
                       "csc", "$rs2, ${imm12}(${rs1})">;
 
 let EmitPriority = 0 in {
 def : InstAlias<"clc $rd, (${rs1})",
-                (CLC_64  GPCR:$rd, GPCR:$rs1, 0)>;
+                (CLC_32  GPCR:$rd, GPCR:$rs1, 0)>;
 def : InstAlias<"csc $rs2, (${rs1})",
-                (CSC_64  GPCR:$rs2, GPCR:$rs1, 0)>;
+                (CSC_32  GPCR:$rs2, GPCR:$rs1, 0)>;
 }
 }
 
 let Predicates = [HasCheri, IsRV64, IsCapMode] in {
 let DecoderNamespace = "CapModeOnly_",
     hasSideEffects = 0, mayLoad = 1, mayStore = 0 in
-def CLC_128  : RVInstI<0x2, OPC_MISC_MEM, (outs GPCR:$rd),
+def CLC_64  : RVInstI<0x2, OPC_MISC_MEM, (outs GPCR:$rd),
                        (ins GPCR:$rs1, simm12:$imm12),
                        "clc", "$rd, ${imm12}(${rs1})">;
 
 let DecoderNamespace = "CapModeOnly_",
     hasSideEffects = 0, mayLoad = 0, mayStore = 1 in
-def CSC_128  : RVInstS<0x4, OPC_STORE, (outs),
+def CSC_64  : RVInstS<0x4, OPC_STORE, (outs),
                        (ins GPCR:$rs2, GPCR:$rs1, simm12:$imm12),
                        "csc", "$rs2, ${imm12}(${rs1})">;
 
 let EmitPriority = 0 in {
 def : InstAlias<"clc $rd, (${rs1})",
-                (CLC_128  GPCR:$rd, GPCR:$rs1, 0)>;
+                (CLC_64  GPCR:$rd, GPCR:$rs1, 0)>;
 def : InstAlias<"csc $rs2, (${rs1})",
-                (CSC_128  GPCR:$rs2, GPCR:$rs1, 0)>;
+                (CSC_64  GPCR:$rs2, GPCR:$rs1, 0)>;
 }
 }
 
@@ -929,7 +929,7 @@ def C_CFLD : CCheriLoad_ri<0b001, "c.cfld", FPR64C, uimm8_lsb000> {
 }
 
 let Predicates = [HasCheri, HasCheriRVC, HasStdExtC, IsRV64, IsCapMode] in
-def C_CLC_128 : CCheriLoad_ri<0b001, "c.clc", GPCRC, uimm9_lsb0000> {
+def C_CLC_64 : CCheriLoad_ri<0b001, "c.clc", GPCRC, uimm9_lsb0000> {
   bits<9> imm;
   let Inst{12-11} = imm{5-4};
   let Inst{10} = imm{8};
@@ -945,7 +945,7 @@ def C_CLW : CCheriLoad_ri<0b010, "c.clw", GPRC, uimm7_lsb00> {
 
 let DecoderNamespace = "RISCV32CapModeOnly_",
     Predicates = [HasCheri, HasCheriRVC, HasStdExtC, IsRV32, IsCapMode] in
-def C_CLC_64 : CCheriLoad_ri<0b011, "c.clc", GPCRC, uimm8_lsb000> {
+def C_CLC_32 : CCheriLoad_ri<0b011, "c.clc", GPCRC, uimm8_lsb000> {
   bits<8> imm;
   let Inst{12-10} = imm{5-3};
   let Inst{6-5} = imm{7-6};
@@ -967,7 +967,7 @@ def C_CFSD : CCheriStore_rri<0b101, "c.cfsd", FPR64C, uimm8_lsb000> {
 }
 
 let Predicates = [HasCheri, HasCheriRVC, HasStdExtC, IsRV64, IsCapMode] in
-def C_CSC_128 : CCheriStore_rri<0b101, "c.csc", GPCRC, uimm9_lsb0000> {
+def C_CSC_64 : CCheriStore_rri<0b101, "c.csc", GPCRC, uimm9_lsb0000> {
   bits<9> imm;
   let Inst{12-11} = imm{5-4};
   let Inst{10} = imm{8};
@@ -983,7 +983,7 @@ def C_CSW : CCheriStore_rri<0b110, "c.csw", GPRC, uimm7_lsb00> {
 
 let DecoderNamespace = "RISCV32CapModeOnly_",
     Predicates = [HasCheri, HasCheriRVC, HasStdExtC, IsRV32, IsCapMode]  in
-def C_CSC_64 : CCheriStore_rri<0b111, "c.csc", GPCRC, uimm8_lsb000> {
+def C_CSC_32 : CCheriStore_rri<0b111, "c.csc", GPCRC, uimm8_lsb000> {
   bits<8> imm;
   let Inst{12-10} = imm{5-3};
   let Inst{6-5} = imm{7-6};
@@ -1023,7 +1023,7 @@ def C_CFLDCSP : CCheriStackLoad<0b001, "c.cfldcsp", FPR64, uimm9_lsb000> {
 }
 
 let Predicates = [HasCheri, HasCheriRVC, HasStdExtC, IsRV64, IsCapMode] in
-def C_CLCCSP_128 : CCheriStackLoad<0b001, "c.clccsp", GPCRNoC0, uimm10_lsb0000> {
+def C_CLCCSP_64 : CCheriStackLoad<0b001, "c.clccsp", GPCRNoC0, uimm10_lsb0000> {
   let Inst{6} = imm{4};
   let Inst{5-2} = imm{9-6};
 }
@@ -1035,7 +1035,7 @@ def C_CLWCSP : CCheriStackLoad<0b010, "c.clwcsp", GPRNoX0, uimm8_lsb00> {
 
 let DecoderNamespace = "RISCV32CapModeOnly_",
     Predicates = [HasCheri, HasCheriRVC, HasStdExtC, IsRV32, IsCapMode] in
-def C_CLCCSP_64 : CCheriStackLoad<0b011, "c.clccsp", GPCRNoC0, uimm9_lsb000> {
+def C_CLCCSP_32 : CCheriStackLoad<0b011, "c.clccsp", GPCRNoC0, uimm9_lsb000> {
   let Inst{6-5} = imm{4-3};
   let Inst{4-2} = imm{8-6};
 }
@@ -1069,7 +1069,7 @@ def C_CFSDCSP : CCheriStackStore<0b101, "c.cfsdcsp", FPR64, uimm9_lsb000> {
 }
 
 let Predicates = [HasCheri, HasCheriRVC, HasStdExtC, IsRV64, IsCapMode] in
-def C_CSCCSP_128 : CCheriStackStore<0b101, "c.csccsp", GPCR, uimm10_lsb0000> {
+def C_CSCCSP_64 : CCheriStackStore<0b101, "c.csccsp", GPCR, uimm10_lsb0000> {
   let Inst{12-11} = imm{5-4};
   let Inst{10-7}  = imm{9-6};
 }
@@ -1081,7 +1081,7 @@ def C_CSWCSP : CCheriStackStore<0b110, "c.cswcsp", GPR, uimm8_lsb00> {
 
 let DecoderNamespace = "RISCV32CapModeOnly_",
     Predicates = [HasCheri, HasCheriRVC, HasStdExtC, IsRV32, IsCapMode] in
-def C_CSCCSP_64 : CCheriStackStore<0b111, "c.csccsp", GPCR, uimm9_lsb000> {
+def C_CSCCSP_32 : CCheriStackStore<0b111, "c.csccsp", GPCR, uimm9_lsb000> {
   let Inst{12-10} = imm{5-3};
   let Inst{9-7}   = imm{8-6};
 }
@@ -1423,7 +1423,7 @@ defm : CheriExplicitLdPat<zextloadi16, LHU_DDC, GPR>;
 
 let Predicates = [HasCheri, IsCapMode, IsRV32] in {
 defm : CheriExplicitLdPat<load, LW_DDC, GPR>;
-defm : CheriExplicitLdPat<load, LC_DDC_64, GPR>;
+defm : CheriExplicitLdPat<load, LC_DDC_32, GPR>;
 }
 
 let Predicates = [HasCheri, IsCapMode, IsRV64] in {
@@ -1431,7 +1431,7 @@ defm : CheriExplicitLdPat<sextloadi32, LW_DDC, GPR>;
 defm : CheriExplicitLdPat<extloadi32, LW_DDC, GPR>;
 defm : CheriExplicitLdPat<load, LD_DDC, GPR>;
 defm : CheriExplicitLdPat<zextloadi32, LWU_DDC, GPR>;
-defm : CheriExplicitLdPat<load, LC_DDC_128, GPR>;
+defm : CheriExplicitLdPat<load, LC_DDC_64, GPR>;
 }
 
 let Predicates = [HasCheri, IsCapMode, HasStdExtF] in
@@ -1454,13 +1454,13 @@ defm : CheriExplicitStPat<truncstorei16, SH_DDC, GPR, GPR>;
 
 let Predicates = [HasCheri, IsCapMode, IsRV32] in {
 defm : CheriExplicitStPat<store, SW_DDC, GPR, GPR>;
-defm : CheriExplicitStPat<store, SC_DDC_64, GPCR, GPR>;
+defm : CheriExplicitStPat<store, SC_DDC_32, GPCR, GPR>;
 }
 
 let Predicates = [HasCheri, IsCapMode, IsRV64] in {
 defm : CheriExplicitStPat<truncstorei32, SW_DDC, GPR, GPR>;
 defm : CheriExplicitStPat<store, SD_DDC, GPR, GPR>;
-defm : CheriExplicitStPat<store, SC_DDC_128, GPCR, GPR>;
+defm : CheriExplicitStPat<store, SC_DDC_64, GPCR, GPR>;
 }
 
 let Predicates = [HasCheri, IsCapMode, HasStdExtF] in
@@ -1488,7 +1488,7 @@ defm : CheriExplicitLdPat<zextloadi16, LHU_CAP, GPCR>;
 
 let Predicates = [HasCheri, NotCapMode, IsRV32] in {
 defm : CheriExplicitLdPat<load, LW_CAP, GPCR>;
-defm : CheriExplicitLdPat<load, LC_CAP_64, GPCR>;
+defm : CheriExplicitLdPat<load, LC_CAP_32, GPCR>;
 }
 
 let Predicates = [HasCheri, NotCapMode, IsRV64] in {
@@ -1496,7 +1496,7 @@ defm : CheriExplicitLdPat<sextloadi32, LW_CAP, GPCR>;
 defm : CheriExplicitLdPat<extloadi32, LW_CAP, GPCR>;
 defm : CheriExplicitLdPat<load, LD_CAP, GPCR>;
 defm : CheriExplicitLdPat<zextloadi32, LWU_CAP, GPCR>;
-defm : CheriExplicitLdPat<load, LC_CAP_128, GPCR>;
+defm : CheriExplicitLdPat<load, LC_CAP_64, GPCR>;
 }
 
 let Predicates = [HasCheri, NotCapMode, HasStdExtF] in
@@ -1519,13 +1519,13 @@ defm : CheriExplicitStPat<truncstorei16, SH_CAP, GPR, GPCR>;
 
 let Predicates = [HasCheri, NotCapMode, IsRV32] in {
 defm : CheriExplicitStPat<store, SW_CAP, GPR, GPCR>;
-defm : CheriExplicitStPat<store, SC_CAP_64, GPCR, GPCR>;
+defm : CheriExplicitStPat<store, SC_CAP_32, GPCR, GPCR>;
 }
 
 let Predicates = [HasCheri, NotCapMode, IsRV64] in {
 defm : CheriExplicitStPat<truncstorei32, SW_CAP, GPR, GPCR>;
 defm : CheriExplicitStPat<store, SD_CAP, GPR, GPCR>;
-defm : CheriExplicitStPat<store, SC_CAP_128, GPCR, GPCR>;
+defm : CheriExplicitStPat<store, SC_CAP_64, GPCR, GPCR>;
 }
 
 let Predicates = [HasCheri, NotCapMode, HasStdExtF] in
@@ -1558,32 +1558,25 @@ multiclass AMOCapPat<string CLenStr, string AtomicOp, string BaseInst> {
 }
 
 let Predicates = [HasCheri, IsRV32, NotCapMode] in {
-// defm : LdPat<load, LC_64, c64>;
-// defm : StPat<store, SC_64, GPCR, c64>;
-defm : LdPat<load, LC_64, t32>;
-defm : StPat<store, SC_64, GPCR, t32>;
+defm : LdPat<load, LC_32, t32>;
+defm : StPat<store, SC_32, GPCR, t32>;
 } // Predicates = [HasCheri, IsRV32, NotCapMode]
 
 let Predicates = [HasCheri, IsRV64, NotCapMode] in {
-//defm : LdPat<load, LC_128, c128>;
-//defm : StPat<store, SC_128, GPCR, c128>;
-defm : LdPat<load, LC_128, t64>;
-defm : StPat<store, SC_128, GPCR, t64>;
+
+defm : LdPat<load, LC_64, t64>;
+defm : StPat<store, SC_64, GPCR, t64>;
 } // Predicates = [HasCheri, IsRV64, NotCapMode]
 
 let Predicates = [HasCheri, HasStdExtA, IsRV32, NotCapMode] in {
-//defm : LdPat<atomic_load_cap, LC_64, c64>;
-//defm : AtomicStPat<atomic_store_cap, SC_64, GPCR, c64>;
-defm : LdPat<atomic_load_cap, LC_64, t32>;
-defm : AtomicStPat<atomic_store_cap, SC_64, GPCR, t32>;
+defm : LdPat<atomic_load_cap, LC_32, t32>;
+defm : AtomicStPat<atomic_store_cap, SC_32, GPCR, t32>;
 defm : AMOCapPat<"64", "atomic_swap_cap", "AMOSWAP_C">;
 } // Predicates = [HasCheri, HasStdExtA, IsRV32, NotCapMode]
 
 let Predicates = [HasCheri, HasStdExtA, IsRV64, NotCapMode] in {
-//defm : LdPat<atomic_load_cap, LC_128, c128>;
-//defm : AtomicStPat<atomic_store_cap, SC_128, GPCR, c128>;
-defm : LdPat<atomic_load_cap, LC_128, t64>;
-defm : AtomicStPat<atomic_store_cap, SC_128, GPCR, t64>;
+defm : LdPat<atomic_load_cap, LC_64, t64>;
+defm : AtomicStPat<atomic_store_cap, SC_64, GPCR, t64>;
 defm : AMOCapPat<"128", "atomic_swap_cap", "AMOSWAP_C">;
 } // Predicates = [HasCheri, HasStdExtA, IsRV64, NotCapMode]
 
@@ -1991,14 +1984,14 @@ defm : PseudoCheriCmpXchgPat<"atomic_cmp_swap_64", PseudoCheriCmpXchg64>;
 } // Predicates = [HasCheri, HasStdExtA, IsRV64, IsCapMode]
 
 let Predicates = [HasCheri, HasStdExtA, IsRV32, IsCapMode] in {
-defm : CheriLdPat<atomic_load_cap, CLC_64>;
-defm : CheriAtomicStPat<atomic_store_cap, CSC_64, GPCR>;
+defm : CheriLdPat<atomic_load_cap, CLC_32>;
+defm : CheriAtomicStPat<atomic_store_cap, CSC_32, GPCR>;
 defm : CheriAMOCapPat<"64", "atomic_swap_cap", "CAMOSWAP_C">;
 } // Predicates = [HasCheri, HasStdExtA, IsRV32, IsCapMode]
 
 let Predicates = [HasCheri, HasStdExtA, IsRV64, IsCapMode] in {
-defm : CheriLdPat<atomic_load_cap, CLC_128>;
-defm : CheriAtomicStPat<atomic_store_cap, CSC_128, GPCR>;
+defm : CheriLdPat<atomic_load_cap, CLC_64>;
+defm : CheriAtomicStPat<atomic_store_cap, CSC_64, GPCR>;
 defm : CheriAMOCapPat<"128", "atomic_swap_cap", "CAMOSWAP_C">;
 } // Predicates = [HasCheri, HasStdExtA, IsRV64, IsCapMode]
 
@@ -2033,13 +2026,13 @@ defm : CheriStPat<store, CFSD, FPR64>;
 /// 'XCheri' extension
 
 let Predicates = [HasCheri, IsRV32, IsCapMode] in {
-defm : CheriLdPat<load, CLC_64>;
-defm : CheriStPat<store, CSC_64, GPCR>;
+defm : CheriLdPat<load, CLC_32>;
+defm : CheriStPat<store, CSC_32, GPCR>;
 } // Predicates = [HasCheri, IsRV32, IsCapMode]
 
 let Predicates = [HasCheri, IsRV64, IsCapMode] in {
-defm : CheriLdPat<load, CLC_128>;
-defm : CheriStPat<store, CSC_128, GPCR>;
+defm : CheriLdPat<load, CLC_64>;
+defm : CheriStPat<store, CSC_64, GPCR>;
 } // Predicates = [HasCheri, IsRV64, IsCapMode]
 
 //===----------------------------------------------------------------------===//
@@ -2058,8 +2051,8 @@ def : CompressPat<(CFLD FPR64C:$rd, GPCRC:$rs1, uimm8_lsb000:$imm),
 } // Predicates = [HasCheri, HasCheriRVC, HasStdExtC, HasStdExtD, IsRV32, IsCapMode]
 
 let Predicates = [HasCheri, HasCheriRVC, HasStdExtC, IsRV64, IsCapMode] in {
-def : CompressPat<(CLC_128 GPCRC:$rd, GPCRC:$rs1, uimm9_lsb0000:$imm),
-                  (C_CLC_128 GPCRC:$rd, GPCRC:$rs1, uimm9_lsb0000:$imm)>;
+def : CompressPat<(CLC_64 GPCRC:$rd, GPCRC:$rs1, uimm9_lsb0000:$imm),
+                  (C_CLC_64 GPCRC:$rd, GPCRC:$rs1, uimm9_lsb0000:$imm)>;
 } // Predicates = [HasCheri, HasCheriRVC, HasStdExtC, IsRV64, IsCapMode]
 
 let Predicates = [HasCheri, HasCheriRVC, HasStdExtC, IsCapMode] in {
@@ -2068,8 +2061,8 @@ def : CompressPat<(CLW GPRC:$rd, GPCRC:$rs1, uimm7_lsb00:$imm),
 } // Predicates = [HasCheri, HasCheriRVC, HasStdExtC, IsCapMode]
 
 let Predicates = [HasCheri, HasCheriRVC, HasStdExtC, IsRV32, IsCapMode] in {
-def : CompressPat<(CLC_64 GPCRC:$rd, GPCRC:$rs1, uimm8_lsb000:$imm),
-                  (C_CLC_64 GPCRC:$rd, GPCRC:$rs1, uimm8_lsb000:$imm)>;
+def : CompressPat<(CLC_32 GPCRC:$rd, GPCRC:$rs1, uimm8_lsb000:$imm),
+                  (C_CLC_32 GPCRC:$rd, GPCRC:$rs1, uimm8_lsb000:$imm)>;
 } // Predicates = [HasCheri, HasCheriRVC, HasStdExtC, IsRV32, IsCapMode]
 
 let Predicates = [HasCheri, HasCheriRVC, HasStdExtC, IsRV64, IsCapMode] in {
@@ -2083,8 +2076,8 @@ def : CompressPat<(CFSD FPR64C:$rs2, GPCRC:$rs1, uimm8_lsb000:$imm),
 } // Predicates = [HasCheri, HasCheriRVC, HasStdExtC, HasStdExtD, IsRV32, IsCapMode]
 
 let Predicates = [HasCheri, HasCheriRVC, HasStdExtC, IsRV64, IsCapMode] in {
-def : CompressPat<(CSC_128 GPCRC:$rs2, GPCRC:$rs1, uimm9_lsb0000:$imm),
-                  (C_CSC_128 GPCRC:$rs2, GPCRC:$rs1, uimm9_lsb0000:$imm)>;
+def : CompressPat<(CSC_64 GPCRC:$rs2, GPCRC:$rs1, uimm9_lsb0000:$imm),
+                  (C_CSC_64 GPCRC:$rs2, GPCRC:$rs1, uimm9_lsb0000:$imm)>;
 } // Predicates = [HasCheri, HasCheriRVC, HasStdExtC, IsRV64, IsCapMode]
 
 let Predicates = [HasCheri, HasCheriRVC, HasStdExtC, IsCapMode] in {
@@ -2093,8 +2086,8 @@ def : CompressPat<(CSW GPRC:$rs2, GPCRC:$rs1, uimm7_lsb00:$imm),
 } // Predicates = [HasCheri, HasCheriRVC, HasStdExtC, IsCapMode]
 
 let Predicates = [HasCheri, HasCheriRVC, HasStdExtC, IsRV32, IsCapMode] in {
-def : CompressPat<(CSC_64 GPCRC:$rs2, GPCRC:$rs1, uimm8_lsb000:$imm),
-                  (C_CSC_64 GPCRC:$rs2, GPCRC:$rs1, uimm8_lsb000:$imm)>;
+def : CompressPat<(CSC_32 GPCRC:$rs2, GPCRC:$rs1, uimm8_lsb000:$imm),
+                  (C_CSC_32 GPCRC:$rs2, GPCRC:$rs1, uimm8_lsb000:$imm)>;
 } // Predicates = [HasCheri, HasCheriRVC, HasStdExtC, IsRV32, IsCapMode]
 
 let Predicates = [HasCheri, HasCheriRVC, HasStdExtC, IsRV64, IsCapMode] in {
@@ -2125,8 +2118,8 @@ def : CompressPat<(CFLD FPR64:$rd, CSP:$rs1, uimm9_lsb000:$imm),
 } // Predicates = [HasCheri, HasCheriRVC, HasStdExtC, HasStdExtD, IsRV32, IsCapMode]
 
 let Predicates = [HasCheri, HasCheriRVC, HasStdExtC, IsRV64, IsCapMode] in {
-def : CompressPat<(CLC_128 GPCRNoC0:$rd, CSP:$rs1, uimm10_lsb0000:$imm),
-                  (C_CLCCSP_128 GPCRNoC0:$rd, CSP:$rs1, uimm10_lsb0000:$imm)>;
+def : CompressPat<(CLC_64 GPCRNoC0:$rd, CSP:$rs1, uimm10_lsb0000:$imm),
+                  (C_CLCCSP_64 GPCRNoC0:$rd, CSP:$rs1, uimm10_lsb0000:$imm)>;
 } // Predicates = [HasCheri, HasCheriRVC, HasStdExtC, IsRV64, IsCapMode]
 
 let Predicates = [HasCheri, HasCheriRVC, HasStdExtC, IsCapMode] in {
@@ -2135,8 +2128,8 @@ def : CompressPat<(CLW GPRNoX0:$rd, CSP:$rs1,  uimm8_lsb00:$imm),
 } // Predicates = [HasCheri, HasCheriRVC, HasStdExtC, IsCapMode]
 
 let Predicates = [HasCheri, HasCheriRVC, HasStdExtC, IsRV32, IsCapMode] in {
-def : CompressPat<(CLC_64 GPCRNoC0:$rd, CSP:$rs1, uimm9_lsb000:$imm),
-                  (C_CLCCSP_64 GPCRNoC0:$rd, CSP:$rs1, uimm9_lsb000:$imm)>;
+def : CompressPat<(CLC_32 GPCRNoC0:$rd, CSP:$rs1, uimm9_lsb000:$imm),
+                  (C_CLCCSP_32 GPCRNoC0:$rd, CSP:$rs1, uimm9_lsb000:$imm)>;
 } // Predicates = [HasCheri, HasCheriRVC, HasStdExtC, IsRV32, IsCapMode]
 
 let Predicates = [HasCheri, HasCheriRVC, HasStdExtC, IsRV64, IsCapMode] in {
@@ -2160,8 +2153,8 @@ def : CompressPat<(CFSD FPR64:$rs2, CSP:$rs1, uimm9_lsb000:$imm),
 } // Predicates = [HasCheri, HasCheriRVC, HasStdExtC, HasStdExtD, IsRV32, IsCapMode]
 
 let Predicates = [HasCheri, HasCheriRVC, HasStdExtC, IsRV64, IsCapMode] in {
-def : CompressPat<(CSC_128 GPCR:$rs2, CSP:$rs1, uimm10_lsb0000:$imm),
-                  (C_CSCCSP_128 GPCR:$rs2, CSP:$rs1, uimm10_lsb0000:$imm)>;
+def : CompressPat<(CSC_64 GPCR:$rs2, CSP:$rs1, uimm10_lsb0000:$imm),
+                  (C_CSCCSP_64 GPCR:$rs2, CSP:$rs1, uimm10_lsb0000:$imm)>;
 } // Predicates = [HasCheri, HasCheriRVC, HasStdExtC, IsRV64, IsCapMode]
 
 let Predicates = [HasCheri, HasCheriRVC, HasStdExtC, IsCapMode] in {
@@ -2170,8 +2163,8 @@ def : CompressPat<(CSW GPR:$rs2, CSP:$rs1, uimm8_lsb00:$imm),
 } // Predicates = [HasCheri, HasCheriRVC, HasStdExtC, IsCapMode]
 
 let Predicates = [HasCheri, HasCheriRVC, HasStdExtC, IsRV32, IsCapMode] in {
-def : CompressPat<(CSC_64 GPCR:$rs2, CSP:$rs1, uimm9_lsb000:$imm),
-                  (C_CSCCSP_64 GPCR:$rs2, CSP:$rs1, uimm9_lsb000:$imm)>;
+def : CompressPat<(CSC_32 GPCR:$rs2, CSP:$rs1, uimm9_lsb000:$imm),
+                  (C_CSCCSP_32 GPCR:$rs2, CSP:$rs1, uimm9_lsb000:$imm)>;
 } // Predicates = [HasCheri, HasCheriRVC, HasStdExtC, IsRV32, IsCapMode]
 
 let Predicates = [HasCheri, HasCheriRVC, HasStdExtC, IsRV64, IsCapMode] in {

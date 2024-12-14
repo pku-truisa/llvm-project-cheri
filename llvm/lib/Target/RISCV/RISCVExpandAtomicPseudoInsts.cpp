@@ -419,6 +419,40 @@ static unsigned getSCForRMW64(bool PtrIsCap, AtomicOrdering Ordering) {
   }
 }
 
+static unsigned getLRForRMWCap32(bool PtrIsCap, AtomicOrdering Ordering) {
+  switch (Ordering) {
+  default:
+    llvm_unreachable("Unexpected AtomicOrdering");
+  case AtomicOrdering::Monotonic:
+    return PtrIsCap ? RISCV::CLR_C_32 : RISCV::LR_C_32;
+  case AtomicOrdering::Acquire:
+    return PtrIsCap ? RISCV::CLR_C_AQ_32 : RISCV::LR_C_AQ_32;
+  case AtomicOrdering::Release:
+    return PtrIsCap ? RISCV::CLR_C_RL_32 : RISCV::LR_C_RL_32;
+  case AtomicOrdering::AcquireRelease:
+    return PtrIsCap ? RISCV::CLR_C_AQ_32 : RISCV::LR_C_AQ_32;
+  case AtomicOrdering::SequentiallyConsistent:
+    return PtrIsCap ? RISCV::CLR_C_AQ_RL_32 : RISCV::LR_C_AQ_RL_32;
+  }
+}
+
+static unsigned getSCForRMWCap32(bool PtrIsCap, AtomicOrdering Ordering) {
+  switch (Ordering) {
+  default:
+    llvm_unreachable("Unexpected AtomicOrdering");
+  case AtomicOrdering::Monotonic:
+    return PtrIsCap ? RISCV::CSC_C_32 : RISCV::SC_C_32;
+  case AtomicOrdering::Acquire:
+    return PtrIsCap ? RISCV::CSC_C_AQ_32 : RISCV::SC_C_AQ_32;
+  case AtomicOrdering::Release:
+    return PtrIsCap ? RISCV::CSC_C_32 : RISCV::SC_C_32;
+  case AtomicOrdering::AcquireRelease:
+    return PtrIsCap ? RISCV::CSC_C_AQ_32 : RISCV::SC_C_AQ_32;
+  case AtomicOrdering::SequentiallyConsistent:
+    return PtrIsCap ? RISCV::CSC_C_AQ_RL_32 : RISCV::SC_C_AQ_RL_32;
+  }
+}
+
 static unsigned getLRForRMWCap64(bool PtrIsCap, AtomicOrdering Ordering) {
   switch (Ordering) {
   default:
@@ -453,40 +487,6 @@ static unsigned getSCForRMWCap64(bool PtrIsCap, AtomicOrdering Ordering) {
   }
 }
 
-static unsigned getLRForRMWCap128(bool PtrIsCap, AtomicOrdering Ordering) {
-  switch (Ordering) {
-  default:
-    llvm_unreachable("Unexpected AtomicOrdering");
-  case AtomicOrdering::Monotonic:
-    return PtrIsCap ? RISCV::CLR_C_128 : RISCV::LR_C_128;
-  case AtomicOrdering::Acquire:
-    return PtrIsCap ? RISCV::CLR_C_AQ_128 : RISCV::LR_C_AQ_128;
-  case AtomicOrdering::Release:
-    return PtrIsCap ? RISCV::CLR_C_RL_128 : RISCV::LR_C_RL_128;
-  case AtomicOrdering::AcquireRelease:
-    return PtrIsCap ? RISCV::CLR_C_AQ_128 : RISCV::LR_C_AQ_128;
-  case AtomicOrdering::SequentiallyConsistent:
-    return PtrIsCap ? RISCV::CLR_C_AQ_RL_128 : RISCV::LR_C_AQ_RL_128;
-  }
-}
-
-static unsigned getSCForRMWCap128(bool PtrIsCap, AtomicOrdering Ordering) {
-  switch (Ordering) {
-  default:
-    llvm_unreachable("Unexpected AtomicOrdering");
-  case AtomicOrdering::Monotonic:
-    return PtrIsCap ? RISCV::CSC_C_128 : RISCV::SC_C_128;
-  case AtomicOrdering::Acquire:
-    return PtrIsCap ? RISCV::CSC_C_AQ_128 : RISCV::SC_C_AQ_128;
-  case AtomicOrdering::Release:
-    return PtrIsCap ? RISCV::CSC_C_128 : RISCV::SC_C_128;
-  case AtomicOrdering::AcquireRelease:
-    return PtrIsCap ? RISCV::CSC_C_AQ_128 : RISCV::SC_C_AQ_128;
-  case AtomicOrdering::SequentiallyConsistent:
-    return PtrIsCap ? RISCV::CSC_C_AQ_RL_128 : RISCV::SC_C_AQ_RL_128;
-  }
-}
-
 static unsigned getLRForRMW(bool PtrIsCap, AtomicOrdering Ordering, MVT VT) {
   if (VT == MVT::i8)
     return getLRForRMW8(PtrIsCap, Ordering);
@@ -496,12 +496,10 @@ static unsigned getLRForRMW(bool PtrIsCap, AtomicOrdering Ordering, MVT VT) {
     return getLRForRMW32(PtrIsCap, Ordering);
   if (VT == MVT::i64)
     return getLRForRMW64(PtrIsCap, Ordering);
-  //if (VT == MVT::c64)
   if (VT == MVT::t32)
-    return getLRForRMWCap64(PtrIsCap, Ordering);
-  //if (VT == MVT::c128)
+    return getLRForRMWCap32(PtrIsCap, Ordering);
   if (VT == MVT::t64)
-    return getLRForRMWCap128(PtrIsCap, Ordering);
+    return getLRForRMWCap64(PtrIsCap, Ordering);
   llvm_unreachable("Unexpected LR type\n");
 }
 
@@ -514,12 +512,10 @@ static unsigned getSCForRMW(bool PtrIsCap, AtomicOrdering Ordering, MVT VT) {
     return getSCForRMW32(PtrIsCap, Ordering);
   if (VT == MVT::i64)
     return getSCForRMW64(PtrIsCap, Ordering);
-  //if (VT == MVT::c64)
   if (VT == MVT::t32)
-    return getSCForRMWCap64(PtrIsCap, Ordering);
-  //if (VT == MVT::c128)
+    return getSCForRMWCap32(PtrIsCap, Ordering);
   if (VT == MVT::t64)
-    return getSCForRMWCap128(PtrIsCap, Ordering);
+    return getSCForRMWCap64(PtrIsCap, Ordering);
   llvm_unreachable("Unexpected SC type\n");
 }
 

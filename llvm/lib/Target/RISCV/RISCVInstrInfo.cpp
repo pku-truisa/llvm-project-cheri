@@ -88,8 +88,8 @@ unsigned RISCVInstrInfo::isLoadFromStackSlot(const MachineInstr &MI,
   case RISCV::LWU:
   case RISCV::LD:
   case RISCV::FLD:
+  case RISCV::LC_32:
   case RISCV::LC_64:
-  case RISCV::LC_128:
   case RISCV::CLB:
   case RISCV::CLBU:
   case RISCV::CLH:
@@ -99,8 +99,8 @@ unsigned RISCVInstrInfo::isLoadFromStackSlot(const MachineInstr &MI,
   case RISCV::CLWU:
   case RISCV::CLD:
   case RISCV::CFLD:
+  case RISCV::CLC_32:
   case RISCV::CLC_64:
-  case RISCV::CLC_128:
     break;
   }
 
@@ -125,16 +125,16 @@ unsigned RISCVInstrInfo::isStoreToStackSlot(const MachineInstr &MI,
   case RISCV::FSW:
   case RISCV::SD:
   case RISCV::FSD:
+  case RISCV::SC_32:
   case RISCV::SC_64:
-  case RISCV::SC_128:
   case RISCV::CSB:
   case RISCV::CSH:
   case RISCV::CSW:
   case RISCV::CFSW:
   case RISCV::CSD:
   case RISCV::CFSD:
+  case RISCV::CSC_32:
   case RISCV::CSC_64:
-  case RISCV::CSC_128:
     break;
   }
 
@@ -512,9 +512,9 @@ void RISCVInstrInfo::storeRegToStackSlot(MachineBasicBlock &MBB,
                                                                : RISCV::CSD;
       IsScalableVector = false;
     } else if (RISCV::GPCRRegClass.hasSubClassEq(RC)) {
-      Opcode = TRI->getRegSizeInBits(RISCV::GPCRRegClass) == 64
-                   ? RISCV::CSC_64
-                   : RISCV::CSC_128;
+      Opcode = TRI->getRegSizeInBits(RISCV::GPCRRegClass) == 32
+                   ? RISCV::CSC_32
+                   : RISCV::CSC_64;
       IsScalableVector = false;
     } else if (RISCV::FPR32RegClass.hasSubClassEq(RC)) {
       Opcode = RISCV::CFSW;
@@ -531,8 +531,8 @@ void RISCVInstrInfo::storeRegToStackSlot(MachineBasicBlock &MBB,
                                                                : RISCV::SD;
       IsScalableVector = false;
     } else if (RISCV::GPCRRegClass.hasSubClassEq(RC)) {
-      Opcode = TRI->getRegSizeInBits(RISCV::GPCRRegClass) == 64 ? RISCV::SC_64
-                                                                : RISCV::SC_128;
+      Opcode = TRI->getRegSizeInBits(RISCV::GPCRRegClass) == 32 ? RISCV::SC_32
+                                                                : RISCV::SC_64;
       IsScalableVector = false;
     } else if (RISCV::FPR16RegClass.hasSubClassEq(RC)) {
       Opcode = RISCV::FSH;
@@ -632,9 +632,9 @@ void RISCVInstrInfo::loadRegFromStackSlot(MachineBasicBlock &MBB,
                                                                : RISCV::CLD;
       IsScalableVector = false;
     } else if (RISCV::GPCRRegClass.hasSubClassEq(RC)) {
-      Opcode = TRI->getRegSizeInBits(RISCV::GPCRRegClass) == 64
-                   ? RISCV::CLC_64
-                   : RISCV::CLC_128;
+      Opcode = TRI->getRegSizeInBits(RISCV::GPCRRegClass) == 32
+                   ? RISCV::CLC_32
+                   : RISCV::CLC_64;
       IsScalableVector = false;
     } else if (RISCV::FPR32RegClass.hasSubClassEq(RC)) {
       Opcode = RISCV::CFLW;
@@ -652,8 +652,8 @@ void RISCVInstrInfo::loadRegFromStackSlot(MachineBasicBlock &MBB,
       IsScalableVector = false;
 
     } else if (RISCV::GPCRRegClass.hasSubClassEq(RC)) {
-      Opcode = TRI->getRegSizeInBits(RISCV::GPCRRegClass) == 64 ? RISCV::LC_64
-                                                                : RISCV::LC_128;
+      Opcode = TRI->getRegSizeInBits(RISCV::GPCRRegClass) == 32 ? RISCV::LC_32
+                                                                : RISCV::LC_64;
       IsScalableVector = false;
     } else if (RISCV::FPR16RegClass.hasSubClassEq(RC)) {
       Opcode = RISCV::FLH;

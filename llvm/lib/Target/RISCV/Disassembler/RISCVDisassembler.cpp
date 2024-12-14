@@ -326,10 +326,10 @@ static void addImplySP(MCInst &Inst, int64_t Address,
   }
   if (Inst.getOpcode() == RISCV::C_CLWCSP || Inst.getOpcode() == RISCV::C_CSWCSP ||
       Inst.getOpcode() == RISCV::C_CLDCSP || Inst.getOpcode() == RISCV::C_CSDCSP ||
+      Inst.getOpcode() == RISCV::C_CLCCSP_32 ||
+      Inst.getOpcode() == RISCV::C_CSCCSP_32 ||
       Inst.getOpcode() == RISCV::C_CLCCSP_64 ||
       Inst.getOpcode() == RISCV::C_CSCCSP_64 ||
-      Inst.getOpcode() == RISCV::C_CLCCSP_128 ||
-      Inst.getOpcode() == RISCV::C_CSCCSP_128 ||
       Inst.getOpcode() == RISCV::C_CFLDCSP ||
       Inst.getOpcode() == RISCV::C_CFSDCSP ||
       Inst.getOpcode() == RISCV::C_CIncOffsetImm4CSPN) {
