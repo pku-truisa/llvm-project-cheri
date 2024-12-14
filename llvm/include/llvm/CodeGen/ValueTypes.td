@@ -226,7 +226,11 @@ def externref : ValueType<0,    182>;  // WebAssembly's externref type
 def x86amx    : ValueType<8192, 183>;  // X86 AMX value
 def i64x8     : ValueType<512,  184>;  // 8 Consecutive GPRs (AArch64)
 
-def c64  : ValueType<64,  !add(i64x8.Value, 1)>;  // 64-bit capability value
+def t32  : ValueType<32,  !add(i64x8.Value, 1)>;  // 32-bit tagged pointer value
+def t64  : ValueType<64,  !add(t32.Value,   1)>;  // 64-bit tagged pointer value
+def t128 : ValueType<128, !add(t64.Value,   1)>;  // 128-bit tagged pointer value
+//def c64  : ValueType<64,  !add(i64x8.Value, 1)>;  // 64-bit capability value
+def c64  : ValueType<64,  !add(t128.Value, 1)>;   // 64-bit capability value
 def c128 : ValueType<128, !add(c64.Value,   1)>;  // 128-bit capability value
 def c256 : ValueType<256, !add(c128.Value,  1)>;  // 256-bit capability value
 

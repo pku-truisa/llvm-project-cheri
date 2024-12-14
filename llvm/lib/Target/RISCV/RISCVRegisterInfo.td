@@ -181,13 +181,15 @@ def XLenVT : ValueTypeByHwMode<[RV32, RV64],
 def XLenRI : RegInfoByHwMode<
       [RV32,              RV64],
       [RegInfo<32,32,32>, RegInfo<64,64,64>]>;
+
 def CLenVT : ValueTypeByHwMode<[RV32, RV64],
                                //[c64, c128]>;
                                [t32, t64]>;
+
 def CLenRI : RegInfoByHwMode<
       [RV32,              RV64],
       //[RegInfo<64,64,64>, RegInfo<128,128,128>]>;
-      [RegInfo<32,32,32>, RegInfo<32,32,32>]>;
+      [RegInfo<32,32,32>, RegInfo<64,64,64>]>;
 
 // The order of registers represents the preferred allocation sequence.
 // Registers are listed in the order caller-save, callee-save, specials.

@@ -496,9 +496,11 @@ static unsigned getLRForRMW(bool PtrIsCap, AtomicOrdering Ordering, MVT VT) {
     return getLRForRMW32(PtrIsCap, Ordering);
   if (VT == MVT::i64)
     return getLRForRMW64(PtrIsCap, Ordering);
-  if (VT == MVT::c64)
+  //if (VT == MVT::c64)
+  if (VT == MVT::t32)
     return getLRForRMWCap64(PtrIsCap, Ordering);
-  if (VT == MVT::c128)
+  //if (VT == MVT::c128)
+  if (VT == MVT::t64)
     return getLRForRMWCap128(PtrIsCap, Ordering);
   llvm_unreachable("Unexpected LR type\n");
 }
@@ -512,9 +514,11 @@ static unsigned getSCForRMW(bool PtrIsCap, AtomicOrdering Ordering, MVT VT) {
     return getSCForRMW32(PtrIsCap, Ordering);
   if (VT == MVT::i64)
     return getSCForRMW64(PtrIsCap, Ordering);
-  if (VT == MVT::c64)
+  //if (VT == MVT::c64)
+  if (VT == MVT::t32)
     return getSCForRMWCap64(PtrIsCap, Ordering);
-  if (VT == MVT::c128)
+  //if (VT == MVT::c128)
+  if (VT == MVT::t64)
     return getSCForRMWCap128(PtrIsCap, Ordering);
   llvm_unreachable("Unexpected SC type\n");
 }
