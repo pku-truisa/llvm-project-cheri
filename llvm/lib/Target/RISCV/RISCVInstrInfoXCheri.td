@@ -662,15 +662,15 @@ def : InstAlias<"sc $rs2, (${rs1})",
 
 let DecoderNamespace = "RISCV32Only_",
     Predicates = [HasCheri, HasStdExtA, IsRV32, NotCapMode] in {
-defm LR_C       : LR_C_r_aq_rl<"64", 0b011, "lr.c">;
-defm SC_C       : AMO_C_rr_aq_rl<"64", 0b00011, 0b011, "sc.c", GPR>;
-defm AMOSWAP_C  : AMO_C_rr_aq_rl<"64", 0b00001, 0b011, "amoswap.c", GPCR>;
+defm LR_C       : LR_C_r_aq_rl<"32", 0b011, "lr.c">;
+defm SC_C       : AMO_C_rr_aq_rl<"32", 0b00011, 0b011, "sc.c", GPR>;
+defm AMOSWAP_C  : AMO_C_rr_aq_rl<"32", 0b00001, 0b011, "amoswap.c", GPCR>;
 }
 
 let Predicates = [HasCheri, HasStdExtA, IsRV64, NotCapMode] in {
-defm LR_C       : LR_C_r_aq_rl<"128", 0b100, "lr.c">;
-defm SC_C       : AMO_C_rr_aq_rl<"128", 0b00011, 0b100, "sc.c", GPR>;
-defm AMOSWAP_C  : AMO_C_rr_aq_rl<"128", 0b00001, 0b100, "amoswap.c", GPCR>;
+defm LR_C       : LR_C_r_aq_rl<"64", 0b100, "lr.c">;
+defm SC_C       : AMO_C_rr_aq_rl<"64", 0b00011, 0b100, "sc.c", GPR>;
+defm AMOSWAP_C  : AMO_C_rr_aq_rl<"64", 0b00001, 0b100, "amoswap.c", GPCR>;
 }
 
 //===----------------------------------------------------------------------===//
@@ -854,16 +854,16 @@ defm CAMOMAXU_D  : CAMO_rr_aq_rl<0b11100, 0b011, "camomaxu.d">;
 
 let DecoderNamespace = "RISCV32CapModeOnly_",
     Predicates = [HasCheri, HasStdExtA, IsRV32, IsCapMode] in {
-defm CLR_C       : CLR_C_r_aq_rl<"64", 0b011, "clr.c">;
-defm CSC_C       : CAMO_C_rr_aq_rl<"64", 0b00011, 0b011, "csc.c", GPR>;
-defm CAMOSWAP_C  : CAMO_C_rr_aq_rl<"64", 0b00001, 0b011, "camoswap.c", GPCR>;
+defm CLR_C       : CLR_C_r_aq_rl<"32", 0b011, "clr.c">;
+defm CSC_C       : CAMO_C_rr_aq_rl<"32", 0b00011, 0b011, "csc.c", GPR>;
+defm CAMOSWAP_C  : CAMO_C_rr_aq_rl<"32", 0b00001, 0b011, "camoswap.c", GPCR>;
 }
 
 let DecoderNamespace = "CapModeOnly_",
     Predicates = [HasCheri, HasStdExtA, IsRV64, IsCapMode] in {
-defm CLR_C       : CLR_C_r_aq_rl<"128", 0b100, "clr.c">;
-defm CSC_C       : CAMO_C_rr_aq_rl<"128", 0b00011, 0b100, "csc.c", GPR>;
-defm CAMOSWAP_C  : CAMO_C_rr_aq_rl<"128", 0b00001, 0b100, "camoswap.c", GPCR>;
+defm CLR_C       : CLR_C_r_aq_rl<"64", 0b100, "clr.c">;
+defm CSC_C       : CAMO_C_rr_aq_rl<"64", 0b00011, 0b100, "csc.c", GPR>;
+defm CAMOSWAP_C  : CAMO_C_rr_aq_rl<"64", 0b00001, 0b100, "camoswap.c", GPCR>;
 }
 
 /// 'F' (Single-Precision Floating-Point) extension
@@ -1571,13 +1571,13 @@ defm : StPat<store, SC_64, GPCR, t64>;
 let Predicates = [HasCheri, HasStdExtA, IsRV32, NotCapMode] in {
 defm : LdPat<atomic_load_cap, LC_32, t32>;
 defm : AtomicStPat<atomic_store_cap, SC_32, GPCR, t32>;
-defm : AMOCapPat<"64", "atomic_swap_cap", "AMOSWAP_C">;
+defm : AMOCapPat<"32", "atomic_swap_cap", "AMOSWAP_C">;
 } // Predicates = [HasCheri, HasStdExtA, IsRV32, NotCapMode]
 
 let Predicates = [HasCheri, HasStdExtA, IsRV64, NotCapMode] in {
 defm : LdPat<atomic_load_cap, LC_64, t64>;
 defm : AtomicStPat<atomic_store_cap, SC_64, GPCR, t64>;
-defm : AMOCapPat<"128", "atomic_swap_cap", "AMOSWAP_C">;
+defm : AMOCapPat<"64", "atomic_swap_cap", "AMOSWAP_C">;
 } // Predicates = [HasCheri, HasStdExtA, IsRV64, NotCapMode]
 
 let Predicates = [HasCheri, HasStdExtA] in {
@@ -1986,13 +1986,13 @@ defm : PseudoCheriCmpXchgPat<"atomic_cmp_swap_64", PseudoCheriCmpXchg64>;
 let Predicates = [HasCheri, HasStdExtA, IsRV32, IsCapMode] in {
 defm : CheriLdPat<atomic_load_cap, CLC_32>;
 defm : CheriAtomicStPat<atomic_store_cap, CSC_32, GPCR>;
-defm : CheriAMOCapPat<"64", "atomic_swap_cap", "CAMOSWAP_C">;
+defm : CheriAMOCapPat<"32", "atomic_swap_cap", "CAMOSWAP_C">;
 } // Predicates = [HasCheri, HasStdExtA, IsRV32, IsCapMode]
 
 let Predicates = [HasCheri, HasStdExtA, IsRV64, IsCapMode] in {
 defm : CheriLdPat<atomic_load_cap, CLC_64>;
 defm : CheriAtomicStPat<atomic_store_cap, CSC_64, GPCR>;
-defm : CheriAMOCapPat<"128", "atomic_swap_cap", "CAMOSWAP_C">;
+defm : CheriAMOCapPat<"64", "atomic_swap_cap", "CAMOSWAP_C">;
 } // Predicates = [HasCheri, HasStdExtA, IsRV64, IsCapMode]
 
 /// 'F' (Single-Precision Floating-Point) extension
